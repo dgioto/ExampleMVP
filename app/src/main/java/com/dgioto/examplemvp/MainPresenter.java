@@ -2,6 +2,13 @@ package com.dgioto.examplemvp;
 
 import android.util.Log;
 
+    /*
+        Presenter живёт до тех пор пока живёт его View, при разработки
+        сложных пользовательских сценариев, советую дублировать все колбеки View
+        в Presenter’e и вызывать их в соответствующие моменты,
+        дублируя ЖЦ Activity/Fragment, чтобы вовремя понять что нужно сделать
+        с теми данными, которые висят в данный момент в «прослойке».
+ */
 public class MainPresenter implements MainContract.Presenter{
 
     private static final String TAG = "MainPresenter";
@@ -11,7 +18,8 @@ public class MainPresenter implements MainContract.Presenter{
     private final MainContract.Repository mRepository;
 
     /* Обрати внимание на аргументы конструктора - мы передаем экземпляр View,
-    а Repository просто создаём конструктором. */
+    а Repository просто создаём конструктором.
+    */
     public MainPresenter(MainContract.View mView){
         this.mView = mView;
         this.mRepository = new MainRepository();

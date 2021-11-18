@@ -8,6 +8,16 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+    /*
+         Что же происходит?
+        Activity, она же View, в методе onCreate() создаёт экзмпляр Presenter и передаёт ему в конструктор себя.
+        Presenter при создании явно получает View и создаёт экзмепляр Repository (его, кстати, можно сделать Singleton)
+        При нажатии на кнопку, View стучится презентеру и сообщает: «Кнопка была нажата».
+        Presenter обращается к Repository: «Загрузи мне вот эту шнягу».
+        Repository грузит и отдаёт «шнягу» Presenter’у.
+        Presenter обращается к View: «Вот тебе данные, отрисуй»
+        Вот и всё, ребята.
+     */
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
     private static final String TAG = "MainActivity";
